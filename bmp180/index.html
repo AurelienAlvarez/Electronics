@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Température et pression</title>
+    <meta charset = 'utf-8'/>
+    <script src='/socket.io/socket.io.js'></script>
+    <script>                
+      var socket = io.connect('http://localhost:8000');
+    </script>
+
+    <style>
+      h1
+      {
+        font-size: 4em;
+      }
+      p
+      {
+        font-size: 3em;
+        color: blue;
+        text-align: center;
+      }
+      span
+      {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+
+  <h1>Arduino + BMP180 + node.js</h1>  
+
+  <p>Température: <span id="temperature"></span> °C</p>
+  <p>Pression: <span id="pression"></span> mbar</p>
+
+    <script>
+      setInterval(function(){socket.emit('data_request');}, 1000);
+            
+      socket.on('temperature', function(data) {
+        document.getElementById('temperature').innerHTML = data;
+      });
+      socket.on('pressure', function(data) {
+        document.getElementById('pression').innerHTML = data;
+      });
+      
+    </script>
+             
+  </body>
+
+</html>
