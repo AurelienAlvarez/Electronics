@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>http-light-relay</title>
+    <meta charset = 'utf-8'/>
+    <script src='/socket.io/socket.io.js'></script>
+    <script>                
+      var socket = io.connect('http://localhost:8000');
+    </script>
+
+    <style>
+      h1
+      {
+        font-size: 3em;
+        color: blue;
+      }
+      button
+      {
+        font-size: 1.5em;
+        text-align: center;
+      }
+      p
+      {
+        font-size: 2em;
+      }
+      span
+      {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+
+  <h1>Piloter une lampe</h1>
+
+  <button onclick="turnON()">Allumer la lumière</button>
+  <button onclick="turnOFF()">Éteindre la lumière</button>
+
+  <p>État de la lumière (0/1) : <span id="state"></span></p>
+
+    <script>
+      function turnON() {
+        socket.emit('turnON');
+      }
+      function turnOFF() {
+        socket.emit('turnOFF');
+      }
+      socket.on('state', function(data) {
+        document.getElementById('state').innerHTML = data;
+      });
+    </script>
+             
+  </body>
+
+</html>
