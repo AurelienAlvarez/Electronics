@@ -16,4 +16,4 @@ Quand un client web se connecte au serveur, celui-ci lui renvoie une page web qu
 * le serveur demande de nouvelles données à la carte Arduino et les renvoie au client web ;
 * s'il n'y pas de client web présent, aucune requête de température/pression n'a lieu.
 
-![How it looks](https://github.com/AurelienAlvarez/Electronics/bmp180/blob/master/IMG_0454.jpg)
+![How it looks](https://github.com/AurelienAlvarez/Electronics/bmp180/IMG_0454.jpg)
